@@ -5,7 +5,9 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"doctrine/dbal": "2.6.*@dev",
+		"way/generators": "~2.0"
 	},
 	"autoload": {
 		"classmap": [
@@ -17,6 +19,7 @@
 			"app/tests/TestCase.php"
 		]
 	},
+	
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",

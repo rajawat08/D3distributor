@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', function()
+/*Route::get('/', function()
 {
 	return View::make('hello');
-});
+});*/
+/**
+ * UsersController
+ */
 
-Route::resource('photo', 'PhotoController');
+Route::controller('/users', 'UsersController');
+Route::controller('/home', 'HomeController');
+Route::controller('/', 'IndexController');
+

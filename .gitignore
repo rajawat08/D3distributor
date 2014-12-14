@@ -9,4 +9,8 @@ Thumbs.db
 .env.*.php
 .env.php
 /public/index.php
+/bootstrap/paths.php
+app/config/app.php
+app/config/database.php
 
+temp

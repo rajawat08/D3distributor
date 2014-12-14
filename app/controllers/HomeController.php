@@ -1,6 +1,17 @@
 <?php
 
 class HomeController extends BaseController {
+	
+	 public function __construct(User $user)
+    {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+
+        // Authentication filter      
+        $this->beforeFilter('auth');
+
+        //Initialize User modal
+        $this->user = $user;  
+    }
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,9 +26,10 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getIndex()
 	{
-		return View::make('hello');
+		return View::make('users.home')
+		->with('logged',Auth::user());
 	}
 
 }
