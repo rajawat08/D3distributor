@@ -28,8 +28,22 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{
+		$user_info = Auth::user();
+		
+		switch($user_info->type){
+			case 2:
+				$user_info->type_name = 'Manufaturer';
+				break;
+			case 3:
+				$user_info->type_name = 'Distributor';
+				break;
+			case 4:
+				$user_info->type_name = 'Normal User';
+				break;
+			default;
+		}
 		return View::make('users.home')
-		->with('logged',Auth::user());
+		->with('logged',$user_info);
 	}
 
 }

@@ -32,7 +32,7 @@
   <!-- Fullwidth Video Div  -->
   <script type="text/javascript" src="{{asset('js/libs/swfobject.js')}}"></script> 
   <script type="text/javascript" src="{{asset('js/libs/modernizr.video.js')}}"></script> 
-  <script type="text/javascript" src="{{asset('js/video_background.js')}}"></script>
+  <!--<script type="text/javascript" src="{{asset('js/video_background.js')}}"></script>
         
   <script>
 	jQuery(document).ready(function($) {
@@ -48,4 +48,4 @@
 			"fallback_image": "videos/main.jpg",	//Fallback image path
 		});
 	});
-  </script>
+  </script>-->

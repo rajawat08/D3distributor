@@ -101,6 +101,9 @@
              
                                     <input type="password" name="password_confirmation" class="form-control" placeholder="Re-enter password" required>
                                 </div>
+                                <div class="form-group">
+                                	{{Form::checkbox('terms_n_policy', '1',null,array('required' => true))}} I agree to the <a href="#" > Terms of Use </a> and <a href="#" > Privacy Policy </a>
+                                </div>
                                 
                                 <div class="form-group">
                                 {{ Form::submit('Register an account',array('class' => 'btn btn-primary'))}}

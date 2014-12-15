@@ -10,12 +10,12 @@
 			<div class="col-lg-7 col-md-6 col-sm-12 clearfix">
 				<div class="footer-menu">
                     <ul class="menu">
-                        <li class="active"><a href="#">Home</a></li>
+                        
                         <li><a href="#">About us</a></li>
-                        <li><a href="#">Headers</a></li>
+                       <!-- <li><a href="#">Headers</a></li>
                         <li><a href="#">Portfolio</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Features</a></li>-->
+                        <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
 			</div><!-- end large-7 --> 

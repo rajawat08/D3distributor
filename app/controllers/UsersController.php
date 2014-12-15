@@ -101,9 +101,13 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function getEdit()
 	{
-		//
+		 $user = Auth::user();     
+        return View::make('users.edit',compact('user'))
+					 ->with('logged',$user)
+                     ->with('action_type','edit');                    
+                    
 	}
 
 	/**
@@ -113,9 +117,55 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function postUpdate()
 	{
-		//
+		$update_rules = array();
+		$update_rules = array(
+								'first_name' => 'required',
+								'last_name' => 'required'
+							 );
+        $input = array(
+						'first_name' => Input::get('first_name'),
+						'last_name' => Input::get('last_name'),
+						'email' => Input::get('email')
+						);
+		
+        if(Input::has('password')){
+            $update_rules = array(  
+					'first_name' => 'required',
+					'last_name' => 'required',                  
+                    'password' => 'required|alpha_num|between:6,12',
+                    'new_password' => 'required|alpha_num|between:6,12|confirmed',
+                    'new_password_confirmation' => 'required|alpha_num|between:6,12'
+            );
+            $input['password'] = Hash::make(Input::get('new_password'));
+        }
+       if(Input::get('email') != Auth::user()->email){
+			$update_rules['email'] = 'required|email|unique:users';  
+	   }
+       $validation = Validator::make(Input::all(), $update_rules);
+
+        if(!$validation->passes()) {
+                return Redirect::to('/users/edit')                        
+                        ->withErrors($validation)
+                        ->with('flash_error','There were validation errors.');
+        }
+
+        if(Input::has('password')){
+             if (!Auth::attempt(['id' => Auth::id(), 'password' => Input::get('password')])) {
+                    return Redirect::to('/users/edit')                        
+                        ->withErrors($validation)
+                        ->with('flash_error','Please enter valid current password');
+            }            
+        }       
+                
+        $user = User::find(Auth::id());
+        $user->update($input);
+         if($user->save()){
+            return Redirect::to('/users/edit')
+            ->with( 'flash_success','User profile updated successfully.')
+            ->withInput();
+        }
 	}
 
 	/**

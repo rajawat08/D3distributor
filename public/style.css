@@ -3177,7 +3177,7 @@
 		border-bottom: 3px solid #fff;
 		display: inline-block;
 		font-size:24px;
-		padding: 30px 0;
+		//padding: 30px 0;
 		color:#222222;
 		position: relative;
 		margin-bottom:-3px;
@@ -3189,7 +3189,8 @@
 		font-size: 14px;
 		font-weight: 400;
 		list-style: none outside none;
-		padding: 10px 0;
+		//padding: 10px 0;
+		padding: 0;
 		position: absolute;
 		right: 0;
 	}
