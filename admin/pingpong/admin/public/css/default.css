@@ -15,11 +15,12 @@ body, table, a{
 a, 
 a:hover,
 a:focus{
-	color: #E5453E;
+	color: #008cba;
 }
 
 .navbar-admin{
-	background-color: #E5453E;
+	//background-color: #E5453E;
+	background-color: #333333;
 }
 
 .navbar-admin * a{
@@ -43,24 +44,28 @@ a:focus{
 .dropdown-menu > li.active > a,
 .dropdown-menu > li > a:focus 
 .navbar-admin .navbar-nav>.active>a:focus{
-	background-color: #F6564F !important;
+	//background-color: #F6564F !important;
+	background-color: #000000 !important;
 	color: #FFF !important;
 }
 
 .btn-primary,
 .btn-primary:active,
 .btn-primary:focus{
-	background-color: #E5453E !important;
-	border: 0;
+	//background-color: #E5453E !important;
+	//border: 0;
+	border-radius: 2px;
 }
 
 .panel-admin{
-	border-color: #F7675F;
+	border-color: #CCCCCC;
 }
 
 .panel-admin > .panel-heading{
-	background-color: #F7675F;
-	color: #FFF;
+	//background-color: #F7675F;
+	background-color: #DDDDDD;
+	color: #000;
+	font-weight:bold;
 }
 
 body{
@@ -79,4 +84,8 @@ footer.container {
 	margin-bottom: 50px;
 	padding: 10px;
 	margin-top: -19px;
+}
+
+.navbar{
+margin-bottom : 50px;	
 }
