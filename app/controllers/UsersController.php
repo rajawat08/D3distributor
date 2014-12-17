@@ -75,6 +75,7 @@ class UsersController extends \BaseController {
         $input['password'] = Hash::make($input['password']);
 		$user = new User($input);        
         $user->save();
+		$user->addRole(Input::get('type'));
         return Redirect::to('/users/account')
             ->with( 'flash_success','User has been created.Login with email & password ');
             

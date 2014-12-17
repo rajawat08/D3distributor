@@ -7,7 +7,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"doctrine/dbal": "2.6.*@dev",
-		"way/generators": "~2.0"
+		"way/generators": "~2.0",
+		"pingpong/admin": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -16,7 +17,8 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
+			"app/tests/TestCase.php",
+			"vendor/pingpong/admin/src/Pingpong/Admin/Seeders"
 		]
 	},
 	
