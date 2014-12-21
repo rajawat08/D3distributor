@@ -35,7 +35,10 @@ class CategoriesController extends BaseController {
      */
     public function create()
     {
-        return $this->view('categories.create');
+		$category = Category::where('level','=',0)->lists('name','id');
+		array_unshift($category,'Select Category');
+        return $this->view('categories.create')
+					->with('main_category',$category);
     }
 
     /**
@@ -47,7 +50,7 @@ class CategoriesController extends BaseController {
     {
         app('Pingpong\Admin\Validation\Category\Create')
             ->validate($data = $this->inputAll());
-
+		
         $category = Category::create($data);
 
         return $this->redirect('categories.index');
@@ -84,8 +87,10 @@ class CategoriesController extends BaseController {
         try
         {
             $category = Category::findOrFail($id);
-
-            return $this->view('categories.edit', compact('category'));
+			$main_category = Category::where('level','=',0)->lists('name','id');
+			array_unshift($main_category,'Select Category');
+            return $this->view('categories.edit', compact('category'))
+						->with('main_category',$main_category);
         }
         catch (ModelNotFoundException $e)
         {

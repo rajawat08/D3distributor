@@ -9,6 +9,7 @@ class Create extends Validator {
 		return [
 	        'name' => 'required',
 	        'slug' => 'required|unique:categories,slug',
+			'level' => 'required'
 		];
 	}
 }
