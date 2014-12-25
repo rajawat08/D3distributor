@@ -31,12 +31,12 @@ Menu::create('admin-menu-right', function ($menu)
 {
     $menu->setPresenter('Pingpong\Admin\Presenters\NavbarRight');
 
-    $name = isset(Auth::user()->name) ? Auth::user()->name : 'Preferences';
+    $name = isset(Auth::user()->username) ? Auth::user()->username : 'Preferences';
 
     $menu->dropdown($name, function ($sub)
     {
-        $sub->route('admin.settings', 'Settings');
-        $sub->divider();
+        //$sub->route('admin.settings', 'Settings');
+        //$sub->divider();
         $sub->route('admin.logout', 'Logout');
     });
 });
