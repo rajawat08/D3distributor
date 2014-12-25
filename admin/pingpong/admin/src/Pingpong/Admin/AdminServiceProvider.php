@@ -66,7 +66,8 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('pingpong/admin');
+        //$this->package('pingpong/admin');
+		$this->package('/admin');
     }
 
     /**

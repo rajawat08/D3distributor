@@ -12,5 +12,5 @@ Thumbs.db
 /bootstrap/paths.php
 app/config/app.php
 app/config/database.php
-
+public/packages/_pingpong123
 temp

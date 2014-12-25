@@ -2,8 +2,62 @@
 
 @section('content')
 
-<h3 class="page-header admin-header">Hello, {{ Auth::user()->name }}.</h3>
+<div class="row state-overview">
 
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol terques">
+                              <i class="fa fa-user"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class="count">
+                                 {{ Pingpong\Admin\Entities\User::count() }}
+                              </h1>
+                              <p>All Users</p>
+                          </div>
+                      </section>
+                  </div>
+                  
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol red">
+                              <i class="fa fa-road"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count2">
+                                 {{ Pingpong\Admin\Entities\Visitor::sum('hits') }}
+                              </h1>
+                              <p>All Visitors</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol yellow">
+                              <i class="fa fa-bars"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count3">
+                                  0
+                              </h1>
+                              <p>All Products</p>
+                          </div>
+                      </section>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <section class="panel">
+                          <div class="symbol blue">
+                              <i class="fa fa-bar-chart-o"></i>
+                          </div>
+                          <div class="value">
+                              <h1 class=" count4">
+                                  0
+                              </h1>
+                              <p>Total Profit</p>
+                          </div>
+                      </section>
+                  </div>
+              </div>
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-admin">

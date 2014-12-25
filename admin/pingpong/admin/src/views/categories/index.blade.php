@@ -1,14 +1,14 @@
 @extends('admin::layouts.master')
 
 @section('content')
-	
-	<h4 class="page-header">
-		All Categories ({{ $categories->getTotal() }})
-	
-		<small class="pull-right">{{ link_to_route('admin.categories.create', 'Add New') }}</small>
-	</h4>
-
-	<table class="table">
+<section class="panel">
+    <header class="panel-heading">
+    All Categories ({{ $categories->getTotal() }})           
+    {{ link_to_route('admin.categories.create', 'Add New',null,array('class' =>' pull-right' )) }}
+    </header>
+    <div class="panel-body">
+    <section id="unseen">	
+	<table class="table table-bordered table-striped table-condensed">
 		<thead>
 			<th>No</th>
 			<th>Name</th>
@@ -26,8 +26,8 @@
 				<td>{{ $category->description }}</td>
 				<td>{{ $category->created_at }}</td>
 				<td class="text-center">
-					<a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a>
-					&middot;
+					<a href="{{ route('admin.categories.edit', $category->id) }}"><i class="fa fa-edit" ></i></a>
+					
 					@include('admin::partials.modal', ['data' => $category, 'name' => 'categories'])
 				</td>
 			</tr>
@@ -39,4 +39,7 @@
 	<div class="text-center">
 		{{ pagination_links($categories) }}
 	</div>
+ </section>
+		</div>
+    </section>
 @stop

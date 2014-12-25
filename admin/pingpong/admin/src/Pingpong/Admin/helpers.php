@@ -77,7 +77,8 @@ if ( ! function_exists('style'))
      */
     function style($url, $attributes = array(), $secure = false)
     {
-        return HTML::style('packages/pingpong/admin/' . $url, $attributes, $secure);
+        //return HTML::style('packages/pingpong/admin/' . $url, $attributes, $secure);
+		return HTML::style('packages/admin/' . $url, $attributes, $secure);
     }
 }
 
@@ -91,7 +92,23 @@ if ( ! function_exists('script'))
      */
     function script($url, $attributes = array(), $secure = false)
     {
-        return HTML::script('packages/pingpong/admin/' . $url, $attributes, $secure);
+       // return HTML::script('packages/pingpong/admin/' . $url, $attributes, $secure);
+		return HTML::script('packages/admin/' . $url, $attributes, $secure);
+    }
+}
+
+if ( ! function_exists('image'))
+{
+    /**
+     * @param $url
+     * @param array $attributes
+     * @param bool $secure
+     * @return mixed
+     */
+    function image($url, $alt = '',$attributes = array())
+    {
+        //return HTML::style('packages/pingpong/admin/' . $url, $attributes, $secure);
+		return HTML::image('packages/admin/img' . $url, $alt, $attributes);
     }
 }
 

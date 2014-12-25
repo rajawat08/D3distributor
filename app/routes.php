@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Pingpong\Admin\Controllers'],
         Route::resource('categories', 'CategoriesController', $options);
         Route::resource('roles', 'RolesController', $options);
         Route::resource('permissions', 'PermissionsController', $options);
+		Route::resource('products','ProductsController');
 
         // backup & reset
         Route::get('backup/reset', ['as' => 'admin.reset', 'uses' => 'SiteController@reset']);

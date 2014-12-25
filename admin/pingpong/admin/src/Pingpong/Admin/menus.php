@@ -1,5 +1,5 @@
 <?php
-
+// in current system i am not using this admin-menu this is for top bar menu
 Menu::create('admin-menu', function ($menu)
 {
     $menu->route('admin.home', 'Home');
@@ -35,8 +35,8 @@ Menu::create('admin-menu-right', function ($menu)
 
     $menu->dropdown($name, function ($sub)
     {
-       // $sub->route('admin.settings', 'Settings');
-        //$sub->divider();
+        $sub->route('admin.settings', 'Settings');
+        $sub->divider();
         $sub->route('admin.logout', 'Logout');
     });
 });

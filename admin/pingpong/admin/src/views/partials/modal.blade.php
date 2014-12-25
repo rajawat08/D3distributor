@@ -1,8 +1,5 @@
-<a data-toggle="modal" href="#modal-delete-{{ $data->id }}">
-  Delete
-</a>
-
-<div id="modal-delete-{{ $data->id }}" class="modal text-left fade">
+<a data-toggle="modal" href="#modal-delete-{{ $data->id }}" title="delete"><i class="fa fa-times-circle"> </i></a>
+<div id="modal-delete-{{ $data->id }}" style="display:none" class="modal text-left fade">
   <div class="modal-dialog">
     <div class="modal-content">
       {{ Form::open(['method' => 'DELETE', 'route' => ["admin.$name.destroy", $data->id]])}}
@@ -20,6 +17,6 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
       </div>
       {{ Form::close() }}
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
+</div>

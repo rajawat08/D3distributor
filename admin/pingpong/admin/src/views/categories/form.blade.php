@@ -18,7 +18,7 @@
     <div class="form-group">
 		{{ Form::label('level', 'Lavel:') }}
 		{{Form::select('level', $main_category, isset($model) ? $model->level : 0, array('class' => 'form-control'))}}
-		{{ $errors->first('slug', '<div class="text-danger">:message</div>') }}
+		{{ $errors->first('level', '<div class="text-danger">:message</div>') }}
 	</div>
     <div class="form-group">
     {{ Form::label('deactive', 'deactive:') }}
@@ -31,6 +31,6 @@
 		{{ $errors->first('description', '<div class="text-danger">:message</div>') }}
 	</div>
 	<div class="form-group">
-		{{ Form::submit(isset($model) ? 'Update' : 'Save', ['class' => 'btn btn-primary']) }}
+		{{ Form::submit(isset($model) ? 'Update' : 'Save', ['class' => 'btn btn-success']) }}
 	</div>
 {{ Form::close() }}
