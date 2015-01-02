@@ -12,7 +12,6 @@
 		<thead>
 			
 			<th>Name</th>
-            <th>Preview</th>
 			<th>Title</th>
 			<th>Description</th>
 			<th>Created At</th>
@@ -22,12 +21,12 @@
 			@foreach ($products as $product)
 			<tr>
 				
-				<td>{{ $product->name }}</td>
-                <td><img src="{{asset('images/small_image.jpg')}}" width="150" height="100" /></td>
+				<td>{{ $product->name }}</td>               
 				<td>{{ $product->short_discription }}</td>
 				<td>{{ $product->discription }}</td>
 				<td>{{ $product->created_at }}</td>
 				<td class="text-center">
+                <a href="{{ route('admin.products.edit', $product->id) }}">Images</a>
 					<a href="{{ route('admin.products.edit', $product->id) }}"><i class="fa fa-edit" ></i></a>
 					
 					@include('admin::partials.modal', ['data' => $product, 'name' => 'products'])

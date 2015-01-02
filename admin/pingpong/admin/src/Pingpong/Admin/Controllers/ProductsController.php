@@ -16,7 +16,8 @@ class ProductsController extends BaseController {
 	 */
 	public function index()
 	{
-		$products = Product::all();
+		$products = \Product::with('images')->get();
+		
 		return $this->view('products.index',compact('products'));
 	}
 
@@ -45,7 +46,11 @@ class ProductsController extends BaseController {
 	{
 		//app('Pingpong\Admin\Validation\Product\Create')
           //  ->validate($data = $this->inputAll());
-		   $validation = Validator::make($this->inputAll(), Product::$rules);
+		 
+		 
+		  
+		
+		   $validation = Validator::make($this->inputAll(), \Product::$rules);
 
         if (!$validation->passes()) {
             return $this->redirect('products.create')
@@ -54,15 +59,25 @@ class ProductsController extends BaseController {
                 ->with('flash_error', 'There were validation errors.');
         }
 		 $input = array_filter(
-            \Input::except('_token'),
+            \Input::except('_token','files'),
             function ($val) {
                 return !empty($val);
             }
         );
+		
+		$images = json_decode($input['images']);
+		unset($input['images']);
+		
+		
 		$input['user_id'] = \Auth::id();
-       $product = new Product($input);
+       $product = new \Product($input);
 	  // $pruduct->user_id = \Auth::id();
 	   $product->save();
+	   $product_id = $product->id;
+	   foreach($images as $image){
+		   $product_image = new \ProductImage(array('product_id' => $product_id, 'image_name' => $image));
+		   $product_image->save();
+	   }
         return $this->redirect('products.index');
 	}
 
