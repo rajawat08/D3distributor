@@ -136,7 +136,8 @@
 $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
-	var url = '/D3distributor/public/uploads';
+	//var url = '/D3distributor/public/uploads';
+	var url =  "{{URL::to('uploads')}}";
 	var latest_images = [];
    /* var url = window.location.hostname === 'blueimp.github.io' ? 
                 '//jquery-file-upload.appspot.com/' : '/D3distributor/public/uploads',

@@ -30,9 +30,8 @@ class ProductsController extends BaseController {
 	public function create()
 	{
 		$category = Category::lists('name','id');
-		array_unshift($category,'Select Category');
 		 return $this->view('products.create')
-					->with('main_category',$category);
+					->with('main_category',array('' => 'Select Category')+$category);
 
 	}
 
@@ -66,12 +65,12 @@ class ProductsController extends BaseController {
         );
 		
 		$images = json_decode($input['images']);
+		
 		unset($input['images']);
 		
-		
 		$input['user_id'] = \Auth::id();
+		
        $product = new \Product($input);
-	  // $pruduct->user_id = \Auth::id();
 	   $product->save();
 	   $product_id = $product->id;
 	   foreach($images as $image){
