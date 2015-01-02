@@ -19,20 +19,20 @@ $(function () {
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
-        url: 'server/php/'
+        url: '/D3distributor/public/uploads'
     });
 
     // Enable iframe cross-domain access via redirect option:
-    $('#fileupload').fileupload(
+  /*  $('#fileupload').fileupload(
         'option',
         'redirect',
         window.location.href.replace(
             /\/[^\/]*$/,
             '/cors/result.html?%s'
         )
-    );
+    );*/
 
-    if (window.location.hostname === 'blueimp.github.io') {
+    /*if (window.location.hostname === 'blueimp.github.io') {
         // Demo settings:
         $('#fileupload').fileupload('option', {
             url: '//jquery-file-upload.appspot.com/',
@@ -71,6 +71,6 @@ $(function () {
             $(this).fileupload('option', 'done')
                 .call(this, null, {result: result});
         });
-    }
+    }*/
 
 });

@@ -14,3 +14,4 @@ app/config/app.php
 app/config/database.php
 public/packages/_pingpong123
 temp
+public/images/products

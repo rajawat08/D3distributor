@@ -56,5 +56,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Pingpong\Admin\Controllers'],
 // front end site or no admin member routing.
 Route::controller('/users', 'UsersController');
 Route::controller('/home', 'HomeController');
+ //UploadsController
+Route::controller('/uploads', 'UploadsController');
 Route::controller('/', 'IndexController');
 
