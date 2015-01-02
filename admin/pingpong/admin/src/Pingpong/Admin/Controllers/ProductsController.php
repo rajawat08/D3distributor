@@ -63,10 +63,11 @@ class ProductsController extends BaseController {
                 return !empty($val);
             }
         );
-		
-		$images = json_decode($input['images']);
-		
-		unset($input['images']);
+		$images = array();
+		if(isset($input['images'])){
+			$images = json_decode($input['images']);
+			unset($input['images']);
+		}	
 		
 		$input['user_id'] = \Auth::id();
 		

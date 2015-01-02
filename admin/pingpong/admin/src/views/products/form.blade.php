@@ -3,7 +3,10 @@
 @else
 {{ Form::open(['files' => true, 'route' => 'admin.products.store' , 'name' => 'product_form', 'id' => 'product_form']) }}
 @endif
-
+	<div class="form-group">
+    	{{Form::hidden('images',null,array('id' => 'file_hidden'))}}
+         
+    </div>
 	<div class="form-group">
 		{{ Form::label('name', 'Product Name:') }}
 		{{ Form::text('name', null, ['class' => 'form-control' , 'required' => true ]) }}
@@ -54,7 +57,7 @@
         <i class="glyphicon glyphicon-plus"></i>
         <span>Add Images...</span>        
         <input id="fileupload" type="file" name="files[]" multiple>
-       <input id="file_hidden" type="hidden" name="images" />
+      
     </span>
     
    	<br>
