@@ -2,7 +2,7 @@
 <html lang="en">
 <head> 
  <title>D3distributor</title> 
-  @extends('layouts.base')
+  @include('layouts.base')
 </head>
 <body>
 
@@ -11,7 +11,7 @@
 </div>
  @include('layouts.topbar')
   
-
+  @include('layouts.header')
 	
     <div class="slider-wrapper">
     

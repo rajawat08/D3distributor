@@ -13,7 +13,9 @@
 			
 			<th>Name</th>
 			<th>Title</th>
-			<th>Description</th>
+            <th>Price ($)</th>
+			<th>Preview</th>
+            <th>Description</th>
 			<th>Created At</th>
 			<th class="text-center">Action</th>
 		</thead>
@@ -21,12 +23,17 @@
 			@foreach ($products as $product)
 			<tr>
 				
-				<td>{{ $product->name }}</td>               
-				<td>{{ $product->short_discription }}</td>
-				<td>{{ $product->discription }}</td>
+				<td>{{ $product->name }}</td> 		
+                <td>{{ $product->short_discription }}</td>
+                <td>{{ $product->price }} </td>
+				<td>
+                	@include('admin::partials.gallary', ['data' => $product, 'name' => 'products'])
+                	
+                </td>
+                <td>{{ $product->discription }}</td>
 				<td>{{ $product->created_at }}</td>
 				<td class="text-center">
-                <a href="{{ route('admin.products.edit', $product->id) }}">Images</a>
+               	
 					<a href="{{ route('admin.products.edit', $product->id) }}"><i class="fa fa-edit" ></i></a>
 					
 					@include('admin::partials.modal', ['data' => $product, 'name' => 'products'])

@@ -17,7 +17,7 @@ class ProductsController extends BaseController {
 	public function index()
 	{
 		$products = \Product::with('images')->get();
-		
+		//print_r($products);
 		return $this->view('products.index',compact('products'));
 	}
 
@@ -45,10 +45,6 @@ class ProductsController extends BaseController {
 	{
 		//app('Pingpong\Admin\Validation\Product\Create')
           //  ->validate($data = $this->inputAll());
-		 
-		 
-		  
-		
 		   $validation = Validator::make($this->inputAll(), \Product::$rules);
 
         if (!$validation->passes()) {
@@ -60,15 +56,15 @@ class ProductsController extends BaseController {
 		 $input = array_filter(
             \Input::except('_token','files'),
             function ($val) {
-                return !empty($val);
+                return !empty($val) or empty($val);
             }
         );
 		$images = array();
-		if(isset($input['images'])){
+		if(!empty($input['images'])){
 			$images = json_decode($input['images']);
-			unset($input['images']);
+			
 		}	
-		
+		unset($input['images']);
 		$input['user_id'] = \Auth::id();
 		
        $product = new \Product($input);
@@ -102,7 +98,18 @@ class ProductsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		try
+        {
+            $product = \Product::findOrFail($id);
+			$category = \Category::lists('name','id');
+			
+            return $this->view('products.edit', compact('product'))
+						->with('main_category',array('' => 'Select Category')+$category);
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
 	}
 
 	/**
@@ -114,7 +121,48 @@ class ProductsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		 try
+        {
+            $validation = Validator::make($this->inputAll(), \Product::$rules);
+			//print_r($this->inputAll());
+			if (!$validation->passes()) {
+				return $this->redirect('products.edit',$id)
+					->withInput()
+					->withErrors($validation)
+					->with('flash_error', 'There were validation errors.');
+			}
+			
+			 $input = array_filter(
+            \Input::except('_token','files','_method'),
+            function ($val) {
+                return !empty($val) or empty($val);
+            }
+        );
+		$images = array();
+		if(!empty($input['images'])){
+			$images = json_decode($input['images']);
+			
+		}
+		unset($input['images']);
+		//$input['available'] = isset($input['available']) ? $input['available'] : 0;
+		
+            $product = \Product::findOrFail($id);
+
+            if($product->update($input)){				
+			 foreach($images as $image){
+			   $product_image = new \ProductImage(array('product_id' => $id, 'image_name' => $image));
+			   $product_image->save();
+			 }				 
+			 return $this->redirect('products.index')
+						 ->with('flash_success', 'Product "'.$product->name. '" Update successfully');
+			}
+
+           
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
 	}
 
 	/**
@@ -126,7 +174,26 @@ class ProductsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		 try
+        {
+            $images = \ProductImage::where('product_id','=',$id)->lists('image_name');
+			foreach($images as $image){
+				$image_path = public_path()."/images/products/".$image;
+				$image_thumb_path = public_path()."/images/products/thumbnail/".$image;
+				if(\File::exists($image_path)){
+					\File::delete($image_path);
+					\File::delete($image_thumb_path);	
+				}				
+			}
+			\Product::destroy($id);
+			
+            return $this->redirect('products.index')
+						->with('flash_success', 'Product deleted successfully');
+        }
+        catch (ModelNotFoundException $e)
+        {
+            return $this->redirectNotFound();
+        }
 	}
 
 }

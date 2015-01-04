@@ -70,7 +70,7 @@ class NavbarPresenter extends Presenter {
 	public function getMenuWithDropDownWrapper($item)
 	{
 		return '<li class="dropdown'. $this->getActiveStateOnChild($item, ' active') .'">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		          <a href="'. $item->getUrl() .'" >
 					'.$item->getIcon().' '.$item->title.'
 			      	<b class="caret"></b>
 			      </a>

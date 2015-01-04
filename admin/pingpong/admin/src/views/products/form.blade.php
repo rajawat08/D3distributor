@@ -1,5 +1,5 @@
 @if(isset($model))
-{{ Form::model($model, ['method' => 'PUT', 'files' => true, 'route' => ['admin.products.update', $model->id]]) }}
+{{ Form::model($model, ['method' => 'PUT', 'files' => true, 'route' => ['admin.products.update', $model->id], 'name' => 'product_form', 'id' => 'product_form']) }}
 @else
 {{ Form::open(['files' => true, 'route' => 'admin.products.store' , 'name' => 'product_form', 'id' => 'product_form']) }}
 @endif
@@ -21,15 +21,15 @@
 		
         <div class="col-sm-4">
         {{ Form::label('name', 'Quantity:') }}
-		{{ Form::text('quantity', 0, ['class' => 'form-control' ,'required' => true]) }}
+		{{ Form::text('quantity', isset($model) ? $model->quantity : 0, ['class' => 'form-control' ,'required' => true]) }}
         </div>        
         <div class="col-sm-4">
         {{ Form::label('price', 'Price:') }}
-		{{ Form::text('price', 0, ['class' => 'form-control','required' => true]) }}
+		{{ Form::text('price', isset($model) ? $model->price : 0, ['class' => 'form-control','required' => true]) }}
         </div>
         <div class="col-sm-4">
         {{ Form::label('shipping', 'Shipping:') }}
-		{{ Form::text('shipping', 0, ['class' => 'form-control','required' => true]) }}
+		{{ Form::text('shipping', isset($model) ? $model->shipping : 0, ['class' => 'form-control','required' => true]) }}
         </div>
 	</div>
 
@@ -41,12 +41,12 @@
 	</div>
     <div class="form-group">
     {{ Form::label('status', 'Status:') }}
-    {{ Form::select('status',array('Disabled','Enabled'),1,array('class' => 'form-control','required' => true))}}
+    {{ Form::select('status',array('Disabled','Enabled'),isset($model) ? $model->status : 1,array('class' => 'form-control','required' => true))}}
     
     </div>
     <div class="form-group">
     {{ Form::label('available', 'Availability:') }}
-    {{ Form::select('available',array('In stock','Out of stock'),0,array('class' => 'form-control','required' => true))}}
+    {{ Form::select('available',array('Out of stock','In stock'),isset($model) ? $model->available : 0,array('class' => 'form-control','required' => true))}}
     
     </div>
      <div class="form-group">
@@ -59,7 +59,9 @@
         <input id="fileupload" type="file" name="files[]" multiple>
       
     </span>
-    
+    @if (isset($model))
+     @include('admin::partials.gallary', ['data' => $model, 'name' => 'products' , 'edit' => true])
+    @endif
    	<br>
     <br>
     
@@ -69,6 +71,7 @@
     
     <div id="files" class="files col-sm-12"></div>
     <br>
+    
     </div>
     
    

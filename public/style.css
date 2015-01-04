@@ -346,7 +346,7 @@
 		right: 0;
 		background-color:#f5f5f5;
 		box-shadow:none;
-		margin-top:25px;
+		margin-top:-8px;
 		border-top:3px solid #fff;
 	}
 	#header-style-1 .navbar-nav > li > a {
@@ -3862,3 +3862,10 @@
 	.videooverlay .general-title h2 {
 		color:#fff;
 	}
+	
+	.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    margin-top: 0px;
+}

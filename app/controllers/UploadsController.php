@@ -22,6 +22,12 @@ class UploadsController extends BaseController {
 		//echo 12345;
 		$upload_handler = new UploadHandler();
 	}
+	
+	public function putIndex()
+	{
+		//echo 12345;
+		$upload_handler = new UploadHandler();
+	}
 
 	
 

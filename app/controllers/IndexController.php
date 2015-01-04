@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends \BaseController {
+class IndexController extends BaseController {
 	
 	public function __construct()
     {
@@ -10,13 +10,7 @@ class IndexController extends \BaseController {
         // Authentication filter      
        // $this->beforeFilter('auth');
 
-      View::composer('/', function($view)
-		{	
-			$category = Category::where('level','=',0)->lists('slug','id');
-			print_r($category);
-			exit;
-			$view->with('gbl_category', $category);
-		});
+     
     }
 
 	/**

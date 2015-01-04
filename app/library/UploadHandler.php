@@ -1034,6 +1034,13 @@ class UploadHandler
 
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,
             $index = null, $content_range = null) {
+		// rename uploaded image name 
+		$temp = explode(".",$name);
+        $ext = $temp[count($temp)-1];
+        array_pop($temp);
+        $name = time()."-".implode("-",$temp).'.'.$ext;
+        $name = preg_replace(array('/\s{1,}/', '/[\t\n]/'), '-', $name);
+				
         $file = new \stdClass();
         $file->name = $this->get_file_name($uploaded_file, $name, $size, $type, $error,
             $index, $content_range);
