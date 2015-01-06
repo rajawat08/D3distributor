@@ -20,4 +20,8 @@ class Product extends \Eloquent {
 	public function image(){
 		return $this->hasOne('ProductImage');	
 	}
+	
+	public function category(){
+		return $this->belongsTo('Category');
+	}
 }

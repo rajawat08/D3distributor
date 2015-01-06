@@ -12,10 +12,11 @@
 		<thead>
 			
 			<th>Name</th>
+            <th>Alias</th>
 			<th>Title</th>
             <th>Price ($)</th>
 			<th>Preview</th>
-            <th>Description</th>
+           
 			<th>Created At</th>
 			<th class="text-center">Action</th>
 		</thead>
@@ -23,14 +24,15 @@
 			@foreach ($products as $product)
 			<tr>
 				
-				<td>{{ $product->name }}</td> 		
+				<td>{{ $product->name }}</td>
+                <td>{{ $product->alias }}</td>	
                 <td>{{ $product->short_discription }}</td>
                 <td>{{ $product->price }} </td>
 				<td>
                 	@include('admin::partials.gallary', ['data' => $product, 'name' => 'products'])
                 	
                 </td>
-                <td>{{ $product->discription }}</td>
+                
 				<td>{{ $product->created_at }}</td>
 				<td class="text-center">
                	

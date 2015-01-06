@@ -3864,8 +3864,8 @@
 	}
 	
 	.dropdown:hover .dropdown-menu {
-    display: block;
-}
-.dropdown-menu {
-    margin-top: 0px;
-}
+		display: block;
+	}
+	.dropdown-menu {
+		margin-top: 0px;
+	}

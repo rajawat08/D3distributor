@@ -33,6 +33,7 @@ $rightMenu = Menu::instance('admin-menu-right');
 		}
 	 	
 	}
+	$obj = $menu->route('category', 'All','all');
    /* $menu->dropdown('Articles', function ($sub)
     {
         $sub->route('admin.articles.index', 'All Articles');

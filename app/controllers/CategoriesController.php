@@ -42,10 +42,29 @@ class CategoriesController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		//echo $id;
-		return View::make('category');
+		if($slug == 'all'){			
+			$category = new stdClass();
+			$category->name = "All Products";
+			$category->slug = "all";
+			$products = Product::with("image")->get();
+		}
+		else {
+			$category  = Category::where('slug','=',$slug)->get();
+			if(is_null($category)){
+				return View::make('layouts.404');
+			}
+			$category = $category[0];
+			$products = Product::with("image")->where('category_id','=',$category->id)->get();
+		}
+		
+		
+		
+		
+		
+		return View::make('category',compact('category'))
+					->with('products',$products);
 	}
 
 	/**

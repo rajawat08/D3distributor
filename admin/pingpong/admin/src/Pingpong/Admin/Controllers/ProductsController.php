@@ -66,7 +66,15 @@ class ProductsController extends BaseController {
 		}	
 		unset($input['images']);
 		$input['user_id'] = \Auth::id();
-		
+		$input['alias'] = ucwords($input['name']);
+		$input['alias'] = preg_replace(array('/\s{1,}/', '/[\t\n]/'), '-', $input['alias']);
+		$input['alias'] .= ".html";
+		$product = \Product::where('alias','=',$input['alias'])->first();
+		if(!is_null($product)){
+			 return $this->redirect('products.create')
+                ->withInput()
+                ->with('flash_error', 'Product Alias already exist, Enter different product name!');
+		}
        $product = new \Product($input);
 	   $product->save();
 	   $product_id = $product->id;
@@ -147,7 +155,20 @@ class ProductsController extends BaseController {
 		//$input['available'] = isset($input['available']) ? $input['available'] : 0;
 		
             $product = \Product::findOrFail($id);
-
+			$input['name'] = trim($input['name']);
+			$input['alias'] = ucwords($input['name']);
+			$input['alias'] = preg_replace(array('/\s{1,}/', '/[\t\n]/'), '-', $input['alias']);
+			$input['alias'] .= ".html";
+			if($input['alias'] != $product->alias){
+				$check_product = \Product::where('alias','=',$input['alias'])->first();
+				if(!is_null($check_product)){
+					 return $this->redirect('products.edit',$id)
+						->withInput()
+						->with('flash_error', 'Product Alias already exist, Enter different product name!');
+				}
+			}
+			
+		
             if($product->update($input)){				
 			 foreach($images as $image){
 			   $product_image = new \ProductImage(array('product_id' => $id, 'image_name' => $image));

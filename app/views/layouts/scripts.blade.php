@@ -32,20 +32,13 @@
   <!-- Fullwidth Video Div  -->
   <script type="text/javascript" src="{{asset('js/libs/swfobject.js')}}"></script> 
   <script type="text/javascript" src="{{asset('js/libs/modernizr.video.js')}}"></script> 
-  <!--<script type="text/javascript" src="{{asset('js/video_background.js')}}"></script>
-        
-  <script>
-	jQuery(document).ready(function($) {
-		var Video_back = new video_background($("#videobgfull"), { 
-			"position": "absolute",	//Stick within the div
-			"z-index": "-1",		//Behind everything
-			"loop": true, 			//Loop when it reaches the end
-			"autoplay": true,		//Autoplay at start
-			"muted": true,			//Muted at start
-			"youtube": "hT6eSm-UhiM",	//Youtube video id
-			"start": 5,					//Start with 6 seconds offset (to pass the introduction in this case for example)
-			"video_ratio": 1.7778, 		// width/height -> If none provided sizing of the video is set to adjust
-			"fallback_image": "videos/main.jpg",	//Fallback image path
-		});
-	});
-  </script>-->
+ <script src="{{asset('js/jquery.prettyPhoto.js')}}"></script>
+  <script type="text/javascript">
+ (function($) {
+	  "use strict";
+	jQuery('a[data-gal]').each(function() {
+		jQuery(this).attr('rel', jQuery(this).data('gal'));
+	});  	
+		jQuery("a[data-gal^='prettyPhoto']").prettyPhoto({animationSpeed:'slow',slideshow:false,overlay_gallery: false,theme:'light_square',social_tools:false,deeplinking:false});
+})(jQuery);
+  </script>

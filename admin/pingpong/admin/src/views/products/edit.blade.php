@@ -9,7 +9,7 @@
 		<small class="pull-right">{{ link_to_route('admin.products.index', 'Back') }}</small>
       </header>
       <div class="panel-body">
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         @include('admin::products.form', array('model' => $product))
       </div>
 	</div>

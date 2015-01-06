@@ -112,6 +112,7 @@
 {{ script('assets/jquery-file-upload/js/jquery.fileupload-validate.js') }}
     {{ script('js/jquery.dcjqaccordion.2.7.js') }}
     {{ script('js/jquery.jcarousel.min.js') }}
+    {{script('assets/ckeditor/ckeditor.js')}}
     {{ script('js/jquery.scrollTo.min.js') }}
     {{ script('js/jquery.nicescroll.js') }}
     {{ script('js/jquery.sparkline.js') }}
