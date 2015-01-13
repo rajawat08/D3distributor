@@ -1,5 +1,4 @@
 <?php
-
 class Product extends \Eloquent {
 	
 	protected $table = 'products';                                         // Database table	
@@ -24,4 +23,9 @@ class Product extends \Eloquent {
 	public function category(){
 		return $this->belongsTo('Category');
 	}
+	
+	public function latestProduct()
+    {
+        return $this->hasOne('Product', 'category_id', 'category_id')->with('image','category')->latest();
+    }
 }

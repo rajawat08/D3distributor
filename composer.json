@@ -8,7 +8,8 @@
 		"laravel/framework": "4.2.*",
 		"doctrine/dbal": "2.6.*@dev",
 		"way/generators": "~2.0",
-		"pingpong/admin": "1.*"
+		"pingpong/admin": "1.0.17",
+		"nicolaslopezj/searchable": "1.*"
 	},
 	"autoload": {
 		"classmap": [

@@ -56,15 +56,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Pingpong\Admin\Controllers'],
 // front end site or no admin member routing.
 Route::group(array('prefix' => 'users'), function()
 {
- Route::controller('/', 'UsersController');
  Route::controller('/home', 'HomeController');
+ Route::controller('/', 'UsersController');
+ 
 });
+ //UploadsController
+Route::controller('/uploads', 'UploadsController');
+Route::controller('/ajax', 'AjaxController');
+
+Route::get('/search', ['as' => 'user.search', 'uses' => 'IndexController@getSearch']);
 //Route::resource('/categories', 'CategoriesController');
 Route::get('/{cat}', ['as' => 'category', 'uses' => 'CategoriesController@show']);
 Route::get('/{cat}/{product}', ['as' => 'product', 'uses' => 'ProductsController@show']);
 
 
- //UploadsController
-Route::controller('/uploads', 'UploadsController');
+
 Route::controller('/', 'IndexController');
 

@@ -32,15 +32,16 @@ class UsersController extends \BaseController {
 		if(Input::has('remember_me')&&Input::get('remember_me') == 1){
 		 if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password'),'type' => Input::get('type')],true)) {
 			
-            return Redirect::to('/home')
+            return Redirect::to('/')
                 ->with('flash_success', 'You have successfully logged in.');
         }	
 			
 		}
 		else {
+			
 		 if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password'),'type' => Input::get('type')])) {
 			
-            return Redirect::to('/home')
+            return Redirect::to('/')
                 ->with('flash_success', 'You have successfully logged in.');
         }	
 		}
@@ -72,12 +73,21 @@ class UsersController extends \BaseController {
                 return !empty($val);
             }
         );
-        $input['password'] = Hash::make($input['password']);
+		$split_email = explode("@",$input['email']);
+		/*$user = User::where('username','=',$split_email[0])->first();
+		if(is_null($user)){
+				
+		}*/
+		$input['username'] = $split_email[0];
+		
+		// below line commented becuase by setPasswordAttribute method in admin user model
+		//$input['password'] = Hash::make($input['password']);
+		
 		$user = new User($input);        
         $user->save();
 		$user->addRole(Input::get('type'));
         return Redirect::to('/users/account')
-            ->with( 'flash_success','User has been created.Login with email & password ');
+            ->with( 'flash_success','User has been created.Login with email & password!');
             
 			
 	}
@@ -139,7 +149,9 @@ class UsersController extends \BaseController {
                     'new_password' => 'required|alpha_num|between:6,12|confirmed',
                     'new_password_confirmation' => 'required|alpha_num|between:6,12'
             );
-            $input['password'] = Hash::make(Input::get('new_password'));
+			// below line commented becuase by setPasswordAttribute method in admin user model
+            //$input['password'] = Hash::make(Input::get('new_password'));
+			$input['password'] = Input::get('new_password');
         }
        if(Input::get('email') != Auth::user()->email){
 			$update_rules['email'] = 'required|email|unique:users';  

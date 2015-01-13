@@ -3,7 +3,7 @@
 	@if (isset($edit))
     Preview Images
     @else
-    {{HTML::image('images/products/thumbnail/'.$data->images[0]->image_name)}}
+    {{HTML::image('images/products/thumbnail/'.$data->images[0]->image_name,'',['width' => '100' , 'height' =>'100'])}}
     @endif
 </a>
 <div id="modal-gallary-{{ $data->id }}" style="display:none" class="modal text-left fade">

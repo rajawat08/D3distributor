@@ -3869,3 +3869,7 @@
 	.dropdown-menu {
 		margin-top: 0px;
 	}
+	
+	.display-none{
+		display:none !important;
+	}

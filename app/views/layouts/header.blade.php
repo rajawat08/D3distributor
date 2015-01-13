@@ -7,7 +7,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="index.html" class="navbar-brand"></a>
+                    
+                    {{HTML::link('/','D3butors',['class' => 'navbar-brand'])}}
         		</div><!-- end navbar-header -->
                 
 				<div id="navbar-collapse-1" class="navbar-collapse collapse navbar-right">

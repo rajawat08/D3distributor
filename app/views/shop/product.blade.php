@@ -115,11 +115,51 @@
                             
                             <div class="pull-right">
                             	<div class="btn-shop">
-                                    <a href="shop-cart.html" class="btn woo_btn btn-primary">Add to cart</a> <a href="shop-cart.html"><span><i class="fa fa-shopping-cart"></i></span></a>
+                                    <a class="btn woo_btn btn-primary accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseToggle2" >Get Quote</a> 
                                 </div>
                             </div><!-- end pull-right -->
                         </div><!-- end shop meta -->
+                       <br/>
+
                         
+<div id="accordion-second" class="col-md-12 clearfix">
+    <div class="accordion" id="accordion3">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+             
+            </div>
+            <div id="collapseToggle2" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                  	  
+                     <div class="message">
+                     
+                    </div>                               
+                   
+                    {{Form::open(['url' => 'ajax/request','name' => 'quote_form','id' => 'qoute_form'])}}
+                    {{Form::hidden('alias',$product->alias)}}
+                    {{Form::hidden('slug',$product->category->slug)}}
+                      <div class="form-group">
+                        
+                        {{Form::label('email_address','Buyer Email')}}
+                        {{Form::email('request_email',Auth::check() ? Auth::user()->email : '',['class' => 'form-control', 'required'])}}
+                                                 
+                      </div>
+                       <div class="form-group">
+                        {{Form::label('quote_request','Quote Request')}}                         							
+                        {{Form::textarea('request_comment','',['class' => 'form-control', 'required'])}}                         
+                      </div>
+                      
+                      <div class="form-group">                      
+                      {{Form::submit('Send',['style' => 'width:100px','class' => ' form-control btn woo_btn btn-primary get_request'])}}                                              
+                      </div>
+                      
+                    {{Form::close()}}
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+                       
                     </div><!-- end shop-right -->
                 </div><!-- end row -->
                 

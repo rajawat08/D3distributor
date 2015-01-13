@@ -2,6 +2,8 @@
 
 class HomeController extends BaseController {
 	
+		protected $user;
+	
 	 public function __construct(User $user)
     {
         $this->beforeFilter('csrf', array('on' => 'post'));

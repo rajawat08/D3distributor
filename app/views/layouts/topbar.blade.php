@@ -14,9 +14,9 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div class="topmenu">
              <span class="topbar-login"> {{ HTML::link('#', 'About Us', array())}}</span>
-            @if (isset($logged))
-            <span class="topbar-login"> {{ HTML::link('#', 'Products', array())}}</span>
-             <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('home', $logged->first_name.' '.$logged->last_name, array())}} </span>
+            @if (Auth::check())
+            <span class="topbar-login"> {{ HTML::link('users/home', 'Settings', array())}}</span>
+             <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('/', Auth::user()->first_name.' '.Auth::user()->last_name, array())}} </span>
              <span class="topbar-login"> {{ HTML::link('users/logout', 'Logout', array())}}</span>
             @else
              <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('users/account', 'Login / Register', array())}}</span>

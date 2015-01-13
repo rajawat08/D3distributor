@@ -42,7 +42,7 @@
     });
 
 	$("#owl_shop_carousel, #owl_shop_carousel_1").owlCarousel({
-		items : 3,
+		items : 4,
 		lazyLoad : true,
 		navigation : true,
 		pagination : false,
@@ -149,5 +149,39 @@
           if(e.type == 'hide')
               $(this).find('.accordion-toggle').not($target).removeClass('active');
     });
+	
+	// populate action on send quote request button
+	$("#qoute_form").on('submit',function(e){
+		
+	var quote_form = $("#qoute_form");
+	//var quotes = $("#qoute_form").serializeArray();
+	//console.log(quotes);
+	
+
+	$('.message').html('').removeClass('alert alert-danger');
+	$.ajax({ 
+		data: quote_form.serializeArray(),
+		type: "POST",
+		url:quote_form.attr('action') , 
+		dataType:"json" ,
+		error: function(response){
+			console.log(response);
+			$('.message').html(response.statusText).addClass('alert alert-danger');
+		},
+		success: function(response){
+			console.log(response);
+			if(response.status == 'error'){				
+				$('.message').html(response.text).addClass('alert alert-danger');
+			}
+			else{
+				$('.message').html(response.text).addClass('alert alert-success');
+				this.reset();
+			}
+			return false;
+		}
+	});
+	
+	return false;	
+	});
 	
 })(jQuery);
