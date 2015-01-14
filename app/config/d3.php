@@ -6,10 +6,10 @@ return [
      /*
      * This is the path where TMS uploads are stored.
      */
-    'product_image_path' => public_path() . '/images/products',
+    //'product_image_path' => public_path() . '/images/products',
 
 
-    //'upload_base_dir' => '/var/www/DMS/public-local//assets/data',
+    'product_image_path' => '/public_html/www.ilearnersindia.com/d3distributor/images/products',
 
 
 
