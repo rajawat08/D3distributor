@@ -72,6 +72,15 @@ class ProductsController extends \BaseController {
 					->with('product',$product)
 					->with('related_products',$related_products);
 	}
+	
+	
+	public function compare(){
+		$categories =  Category::all()->lists('name','slug');
+		return View::make('shop.compare')
+					->with('compared_products',array())
+					->with('tags',array())
+					->with('categories',['' => 'All']+$categories);
+	}
 
 	/**
 	 * Show the form for editing the specified resource.

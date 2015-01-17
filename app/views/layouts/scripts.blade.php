@@ -1,6 +1,10 @@
   <!-- Main Scripts-->
   <script src="{{asset('js/jquery.js')}}"></script>
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
+ 
+  <script src="{{asset('js/bootstrap-tagsinput.js')}}"></script>
+   <script src="{{asset('assets/typeahead.js/dist/typeahead.bundle.js')}}" ></script>
+  
   <script src="{{asset('js/menu.js')}}"></script>
   <script src="{{asset('js/owl.carousel.min.js')}}"></script>
   <script src="{{asset('js/jquery.parallax-1.1.3.js')}}"></script>
@@ -10,7 +14,7 @@
     
   <script src="{{asset('js/jquery.isotope.min.js')}}"></script>
   <script src="{{asset('js/custom-portfolio-masonry.js')}}"></script>
-
+	
   <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
   <script type="text/javascript" src="{{asset('rs-plugin/js/jquery.themepunch.plugins.min.js')}}"></script>
   <script type="text/javascript" src="{{asset('rs-plugin/js/jquery.themepunch.revolution.min.js')}}"></script>
@@ -33,6 +37,7 @@
   <script type="text/javascript" src="{{asset('js/libs/swfobject.js')}}"></script> 
   <script type="text/javascript" src="{{asset('js/libs/modernizr.video.js')}}"></script> 
  <script src="{{asset('js/jquery.prettyPhoto.js')}}"></script>
+ 
   <script type="text/javascript">
  (function($) {
 	  "use strict";

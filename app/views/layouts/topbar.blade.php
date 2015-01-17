@@ -14,6 +14,7 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                 <div class="topmenu">
              <span class="topbar-login"> {{ HTML::link('#', 'About Us', array())}}</span>
+             <span class="topbar-login"> {{ HTML::link('/compare', 'Compare Products', array())}}</span>
             @if (Auth::check())
             <span class="topbar-login"> {{ HTML::link('users/home', 'Settings', array())}}</span>
              <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('/', Auth::user()->first_name.' '.Auth::user()->last_name, array())}} </span>

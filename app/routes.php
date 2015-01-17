@@ -65,7 +65,8 @@ Route::controller('/uploads', 'UploadsController');
 Route::controller('/ajax', 'AjaxController');
 
 Route::get('/search', ['as' => 'user.search', 'uses' => 'IndexController@getSearch']);
-//Route::resource('/categories', 'CategoriesController');
+Route::post('/compare', ['as' => 'compared', 'uses' => 'IndexController@compare']);
+Route::get('/compare', ['as' => 'compare','uses' => 'ProductsController@compare']);
 Route::get('/{cat}', ['as' => 'category', 'uses' => 'CategoriesController@show']);
 Route::get('/{cat}/{product}', ['as' => 'product', 'uses' => 'ProductsController@show']);
 

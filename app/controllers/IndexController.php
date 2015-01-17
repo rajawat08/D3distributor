@@ -73,9 +73,33 @@ class IndexController extends BaseController {
 		
 	 }
 	 
-	 public function postRequest(){
+	 public function compare(){
 		 
-		echo 12345;	 
+		//print_r(Input::all());
+		$aliases = Input::get('alias');
+		$aliases = explode(',',$aliases);		
+		$where = "alias IN(";
+		for($i = 0 ; $i<count($aliases);$i++){
+				$where .= "'".$aliases[$i]."',";
+		}
+		$where = trim($where,",");
+		$where .= ")";
+		//echo $where;exit;
+		$products = Product::select("id","name","short_discription","quantity","price","available","discription","alias")->whereRaw($where)->get()->toArray();
+		$tags = $products;
+		
+		$product_column_wise = call_user_func_array('array_merge_recursive', $products);
+		
+			
+		$categories =  Category::all()->lists('name','slug');
+	
+		
+		
+		return View::make('shop.compare')
+					->with('compared_products',$product_column_wise)
+					->with('tags',$tags)
+					->with('categories',['' => 'All']+$categories);
+					
 	 }
 	
 

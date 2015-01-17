@@ -9,7 +9,7 @@
 
   <!-- Bootstrap Styles -->
   <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet">
-  
+  <link href="{{asset('css/bootstrap-tagsinput.css')}}" rel="stylesheet">
   <!-- Styles -->
   <link href="{{asset('style.css')}}" rel="stylesheet">
   
@@ -20,9 +20,9 @@
   <link href="{{asset('css/animate.min.css')}}" rel="stylesheet">
   
   <!-- Google Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Lato:400,300,400italic,300italic,700,700italic,900' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Exo:400,300,600,500,400italic,700italic,800,900' rel='stylesheet' type='text/css'>
+ <!-- <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>-->
+ 
+
 
   <!-- SLIDER ROYAL CSS SETTINGS -->
   <link href="{{asset('royalslider/royalslider.css')}}" rel="stylesheet">
