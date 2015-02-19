@@ -1,4 +1,4 @@
-var parent = "/D3distributor";
+var parent = "/d3distributor";
 (function($) {
  "use strict"
 
