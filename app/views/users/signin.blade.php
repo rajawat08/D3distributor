@@ -13,10 +13,10 @@
   <section class="post-wrapper-top jt-shadow clearfix">
 		<div class="container">
 			<div class="col-lg-12">
-				<h2>Login & Register</h2>
+				<h2>Login</h2>
                 <ul class="breadcrumb pull-right">
                     <li>{{ HTML::link('/', 'Home', array())}}</li>
-                    <li>Login & Register</li>
+                    <li>Login</li>
                 </ul>
 			</div>
 		</div>
@@ -73,44 +73,7 @@
                         </div><!-- end widget -->
 					</div><!-- end col-md-6 -->
                    <div class="col-md-6">
- 						<div class="widget">
-                        	<div class="title">
-                            	<h3>Create An Account</h3>
-                            </div><!-- end title -->
-                            	{{ Form::open(array('url' => 'users/store', 'method' => 'post' ,'name' => 'registerform'))}}
-                                
-                                <div class="form-group" >
-                                	{{Form::select('type', array('' => '--Select User type--','2' => 'Manufacturer', '3' => 'Distributor', '4' => 'User'),'',array('class' => 'form-control','required' => true))}}
-                                </div>
-                                <div class="form-group">                                        
-                                  {{ Form::text('first_name','',array('class' => 'form-control', 'placeholder' => "First Name",'required' => true))}}
-                                </div>
-                                <div class="form-group">
-                                {{ Form::text('last_name','',array('class' => 'form-control', 'placeholder' => "Last Name",'required' => true))}}
-                                    
-                                </div>
-                                <div class="form-group">
-                                {{ Form::email('email','',array('class' => 'form-control', 'placeholder' => "Email" ,'required' => true))}}
-                                    
-                                </div>
-                                <div class="form-group">
-                    
-                                    <input type="password" name="password" class="form-control" placeholder="Password" required>
-                                </div>
-                                <div class="form-group">
-             
-                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Re-enter password" required>
-                                </div>
-                                <div class="form-group">
-                                	{{Form::checkbox('terms_n_policy', '1',null,array('required' => true))}} I agree to the <a href="#" > Terms of Use </a> and <a href="#" > Privacy Policy </a>
-                                </div>
-                                
-                                <div class="form-group">
-                                {{ Form::submit('Register an account',array('class' => 'btn btn-primary'))}}
-                                   
-                                </div>
-                                {{ Form::close() }}
-                        </div><!-- end widget -->
+ 						
 					</div><!-- end col-md-6 -->
             	</div><!-- end row --> 
             </div><!-- end content -->

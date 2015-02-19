@@ -20,7 +20,8 @@
              <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('/', Auth::user()->first_name.' '.Auth::user()->last_name, array())}} </span>
              <span class="topbar-login"> {{ HTML::link('users/logout', 'Logout', array())}}</span>
             @else
-             <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('users/account', 'Login / Register', array())}}</span>
+             <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('users/signin', 'Login', array())}}</span>
+              <span class="topbar-login"><i class="fa fa-user"></i> {{ HTML::link('users/signup', 'Register', array())}}</span>
             <!--<span class="topbar-cart"><i class="fa fa-shopping-cart"></i> <a href="shop-cart.html">0 item - $0.00</a></span>-->
             @endif
             

@@ -1,3 +1,4 @@
+var parent = "/D3distributor/public";
 (function($) {
  "use strict"
 
@@ -184,4 +185,13 @@
 	return false;	
 	});
 	
+	
+	
 })(jQuery);
+
+// change different sign ups
+	function changeSignup(type){
+		if(type == 4) location.href = parent+'/users/signup';
+		else if(type == 3) location.href = parent+'/users/signup/distrubutor';
+		else if(type == 2) location.href = parent+'/users/signup/OEM';
+	}

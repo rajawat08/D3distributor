@@ -8,7 +8,7 @@ class UsersController extends \BaseController {
         $this->beforeFilter('csrf', array('on' => 'post'));
 
         // Authentication filter      
-        $this->beforeFilter('auth',array('except' => array('getAccount','postLogin','postStore')));
+        $this->beforeFilter('auth',array('except' => array('getSignin','postLogin','postStore','getSignup')));
 
         //Initialize User modal
         $this->user = $user;  
@@ -19,9 +19,31 @@ class UsersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function getAccount()
+	public function getSignin()
 	{
-		return View::make('users.login_signup');
+		return View::make('users.signin');
+	}
+	
+	public function getSignup($type='user')
+	{
+		if($type == 'user'){
+			$type = 4;
+			$account_name = "User";
+		}
+		else if($type == 'distrubutor'){
+			$type = 3;
+			$account_name = "Distrubutor";
+		}
+		else if($type == 'OEM'){
+			$type = 2;
+			$account_name = "Manufacturer";
+		}
+		
+		return View::make('users.signup',compact('type','account_name'))
+					->with('firm_type',['' => 'Select Firm']+Config::get('d3.firm_type'))
+					->with('p_research_area',['' => 'Select Primary Area']+Config::get('d3.primary_research_area'))
+					->with('source_of_fund',['' => 'Select Source of fund']+Config::get('d3.source_of_fund'))
+					->with('company_type',['' => 'Select Company']+Config::get('d3.company_type'));
 	}
 
 	/**
@@ -46,7 +68,7 @@ class UsersController extends \BaseController {
         }	
 		}
        
-		  return Redirect::to('users/account')
+		  return Redirect::to('users/signin')
             ->with('flash_error', 'Your username/password combination was incorrect!')
             ->withInput();
     }
@@ -62,17 +84,20 @@ class UsersController extends \BaseController {
 		//print_r(Input::all());
 		$validation = Validator::make(Input::all(), User::$rules);
 		if(!$validation->passes()) {
-                return Redirect::to('/users/account')
+                return Redirect::to('/users/signup')
                         ->withInput()
                         ->withErrors($validation)
                         ->with('flash_error','There were validation errors.');
         }
-		 $input = array_filter(
-            Input::except('_token','password_confirmation'),
+		$input = array('type'=>Input::get('type'),'first_name' =>Input::get('name'),'email' => Input::get('email'),'password' =>Input::get('password'),'terms_n_policy' => Input::get('terms_n_policy'));
+		 
+		 $user_info = array_filter(
+            Input::except('_token','password_confirmation','type','name','email','password','terms_n_policy'),
             function ($val) {
                 return !empty($val);
             }
         );
+		
 		$split_email = explode("@",$input['email']);
 		/*$user = User::where('username','=',$split_email[0])->first();
 		if(is_null($user)){
@@ -85,8 +110,18 @@ class UsersController extends \BaseController {
 		
 		$user = new User($input);        
         $user->save();
+		$user_id = $user->id;
+		// insert user info which is associated with signup user.
+		$info = new UserInfo($user_info);
+		$info->user_id = $user_id;
+		$info->save();
 		$user->addRole(Input::get('type'));
-        return Redirect::to('/users/account')
+		$url = '/users/signup';
+		if(Input::get('type') == 2)
+		$url .= '/OEM'; 
+		if(Input::get('type') == 3)
+		$url .= '/distrubutor'; 
+        return Redirect::to($url)
             ->with( 'flash_success','User has been created.Login with email & password!');
             
 			
@@ -102,7 +137,7 @@ class UsersController extends \BaseController {
     {
         Auth::logout();
 
-        return Redirect::to('/users/account')
+        return Redirect::to('/users/signin')
             ->with('flash_success', "You have successfully logged out.");
     }
 	/**
